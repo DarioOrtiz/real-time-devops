@@ -54,11 +54,12 @@ pip install -r requirements.txt
 
 # Ejecutar servidor
 uvicorn app.main:app --reload
+```
 
 El backend correrá en: http://localhost:8000
 
 🔹 Instalación Frontend
-
+```bash
 cd frontend
 
 # Instalar dependencias
@@ -66,7 +67,7 @@ npm install
 
 # Ejecutar aplicación
 npm run dev
-
+```
 El frontend correrá en: http://localhost:5173 (o el puerto que Vite indique)
 
 🔹 Registro y manejo de usuarios
@@ -82,11 +83,11 @@ GET	/api/v1/auth/me	Obtener información del usuario autenticado
 🔹 Nota: Las contraseñas ahora se almacenan de forma segura usando Argon2. Se recomienda truncar passwords largas si es necesario.
 
 Ejemplo de registro
-
+```bash
 curl -X POST http://localhost:8000/api/v1/auth/register \
 -H "Content-Type: application/json" \
 -d '{"email": "usuario@example.com", "password": "MiPasswordSeguro123"}'
-
+```
 🔹 Endpoints API
 
 Apps
@@ -107,7 +108,7 @@ POST	/api/v1/metrics	Crear métrica
 Swagger disponible en: http://localhost:8000/docs
 
 🔹 Estructura del proyecto
-
+```bash
 fullstack-devops-dashboard/
 ├─ backend/ # FastAPI backend
 │ ├─ app/
@@ -133,7 +134,7 @@ fullstack-devops-dashboard/
 │ │   └─ api.ts
 │ └─ package.json
 └─ README.md
-
+```
 🔹 Uso
 
 Levantar backend (uvicorn) y frontend (npm run dev) en paralelo.
