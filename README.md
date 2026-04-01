@@ -1,53 +1,121 @@
-# Full-Stack DevOps Dashboard (FSDD)
+Real-Time DevOps Dashboard
 
-A professional Full-Stack DevOps Dashboard built to manage and monitor application deployments and metrics in real-time.
+🔹 Descripción
 
-## Tech Stack
-- **Backend**: Python, FastAPI, SQLAlchemy, PostgreSQL, Redis, Pytest
-- **Frontend**: React, TypeScript, Tailwind CSS, Recharts, Vite
-- **Infrastructure**: Docker, Docker Compose, GitHub Actions
+Real-Time DevOps Dashboard es un proyecto fullstack que permite monitorear aplicaciones y sus métricas en tiempo real. Incluye:
 
-## Features
-- **Application Management**: Full CRUD for registered applications.
-- **Deployment Tracking**: Track active and pending deployments.
-- **Real-Time Metrics**: View CPU, Memory, and Response times with websockets and rich dynamic charts.
-- **GraphQL APIs**: Extensible data querying.
-- **Modern UI**: Polished Tailwind-based interface.
+Backend con FastAPI para manejo de aplicaciones, despliegues y métricas.
+Frontend con React + TypeScript y Recharts para visualización de gráficos.
+Dashboard interactivo con métricas de CPU, memoria y tiempos de respuesta.
+Menú lateral para navegar entre Dashboard, Applications, Metrics y Settings.
 
-## Quick Start
+🔹 Tecnologías
 
-### Run with Docker Compose (Recommended)
-You can launch the entire stack (Postgres, Redis, Backend API, Frontend App) via Docker Compose:
+Backend:
 
-```bash
-cd docker
-docker-compose up --build -d
-```
-- Frontend: `http://localhost`
-- Backend API Docs: `http://localhost:8000/docs`
-- Backend GraphQL: `http://localhost:8000/graphql`
+Python 3.10+
+FastAPI
+SQLAlchemy
+Uvicorn
+PostgreSQL (opcional)
 
-### Run Locally
+Frontend:
 
-**Backend**:
-```bash
+React 18 + TypeScript
+Tailwind CSS
+Recharts (para gráficos)
+React Router v6
+
+DevOps / Otros:
+
+GitHub
+Docker (opcional)
+npm / Node.js
+🔹 Instalación
+Backend
+Ir a la carpeta backend:
 cd backend
+Crear entorno virtual:
 python -m venv venv
-source venv/bin/activate
+source venv/bin/activate   # Linux / Mac
+venv\Scripts\activate      # Windows
+Instalar dependencias:
 pip install -r requirements.txt
+Ejecutar el servidor:
 uvicorn app.main:app --reload
-```
 
-**Frontend**:
-```bash
+El backend correrá en http://localhost:8000.
+
+Frontend
+Ir a la carpeta frontend:
 cd frontend
+Instalar dependencias:
 npm install
+Ejecutar la aplicación:
 npm run dev
-```
 
-## Testing
-The backend contains a `pytest` suite for validating functionality.
-```bash
-cd backend
-pytest
-```
+El frontend correrá en http://localhost:5173 (o el puerto que Vite indique).
+
+🔹 Endpoints API
+
+El backend expone los siguientes endpoints (Swagger disponible en http://localhost:8000/docs):
+
+Apps
+
+Método	Endpoint	Descripción
+GET	/api/v1/apps/	Listar aplicaciones
+POST	/api/v1/apps/	Crear aplicación
+GET	/api/v1/apps/{id}	Leer aplicación
+DELETE	/api/v1/apps/{id}	Eliminar aplicación
+
+Deployments
+
+Método	Endpoint	Descripción
+GET	/api/v1/{app_id}/deployments	Listar despliegues de una app
+POST	/api/v1/deployments	Crear despliegue
+
+Metrics
+
+Método	Endpoint	Descripción
+GET	/api/v1/{app_id}/metrics	Listar métricas de una app
+POST	/api/v1/metrics	Crear métrica
+🔹 Estructura del proyecto
+fullstack-devops-dashboard/
+│
+├─ backend/                  # FastAPI backend
+│  ├─ app/
+│  │  ├─ main.py
+│  │  ├─ models.py
+│  │  ├─ routers/
+│  │  └─ services/
+│  └─ requirements.txt
+│
+├─ frontend/                 # React frontend
+│  ├─ src/
+│  │  ├─ pages/
+│  │  │  ├─ Dashboard.tsx
+│  │  │  ├─ Applications.tsx
+│  │  │  ├─ Metrics.tsx
+│  │  │  └─ Settings.tsx
+│  │  ├─ components/
+│  │  │  ├─ Sidebar.tsx
+│  │  │  ├─ Header.tsx
+│  │  │  └─ DashboardLayout.tsx
+│  │  ├─ hooks/
+│  │  │  └─ useDashboard.ts
+│  │  └─ services/
+│  │     └─ api.ts
+│  └─ package.json
+│
+└─ README.md
+🔹 Uso
+Levantar backend (uvicorn) y frontend (npm run dev) en paralelo.
+Abrir navegador en http://localhost:5173.
+Navegar por el Dashboard, Applications, Metrics y Settings.
+Visualizar métricas en tiempo real en gráficos interactivos.
+🔹 Contribuciones
+Hacer fork del repositorio
+Crear branch para tu feature: git checkout -b feature/nombre-feature
+Hacer commit: git commit -m "Descripción del cambio"
+Subir a tu fork: git push origin feature/nombre-feature
+Crear Pull Request en el repo original
