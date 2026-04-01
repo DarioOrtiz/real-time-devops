@@ -85,6 +85,7 @@ POST | /api/v1/metrics | Crear métrica
 
 🔹 Estructura del proyecto
 
+```text
 fullstack-devops-dashboard/
 ├─ backend/ # FastAPI backend
 │ ├─ app/
@@ -110,7 +111,7 @@ fullstack-devops-dashboard/
 │ │ └─ api.ts
 │ └─ package.json
 └─ README.md
-
+```
 🔹 Uso
 Levantar backend (uvicorn) y frontend (npm run dev) en paralelo.
 Abrir navegador en http://localhost:5173
