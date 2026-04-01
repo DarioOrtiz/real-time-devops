@@ -52,6 +52,9 @@ venv\Scripts\activate
 # Instalar dependencias
 pip install -r requirements.txt
 
+# Crear las tablas en la base de datos
+python -m app.create_tables
+
 # Ejecutar servidor
 uvicorn app.main:app --reload
 ```
@@ -75,11 +78,25 @@ El frontend correrá en: http://localhost:5173 (o el puerto que Vite indique)
 El backend permite registrar y autenticar usuarios.
 
 Endpoints de usuarios
-Método	Endpoint	Descripción
-POST	/api/v1/auth/register	Registrar un nuevo usuario
-POST	/api/v1/auth/login	Login de usuario (devuelve JWT)
-GET	/api/v1/auth/me	Obtener información del usuario autenticado
+#### Apps
+| Método | Endpoint | Descripción |
+|--------|---------|------------|
+| GET    | /api/v1/apps/ | Listar aplicaciones |
+| POST   | /api/v1/apps/ | Crear aplicación |
+| GET    | /api/v1/apps/{id} | Leer aplicación |
+| DELETE | /api/v1/apps/{id} | Eliminar aplicación |
 
+#### Deployments
+| Método | Endpoint | Descripción |
+|--------|---------|------------|
+| GET    | /api/v1/{app_id}/deployments | Listar despliegues de una app |
+| POST   | /api/v1/deployments | Crear despliegue |
+
+#### Metrics
+| Método | Endpoint | Descripción |
+|--------|---------|------------|
+| GET    | /api/v1/{app_id}/metrics | Listar métricas de una app |
+| POST   | /api/v1/metrics | Crear métrica |
 🔹 Nota: Las contraseñas ahora se almacenan de forma segura usando Argon2. Se recomienda truncar passwords largas si es necesario.
 
 Ejemplo de registro
@@ -88,23 +105,6 @@ curl -X POST http://localhost:8000/api/v1/auth/register \
 -H "Content-Type: application/json" \
 -d '{"email": "usuario@example.com", "password": "MiPasswordSeguro123"}'
 ```
-🔹 Endpoints API
-
-Apps
-Método	Endpoint	Descripción
-GET	/api/v1/apps/	Listar aplicaciones
-POST	/api/v1/apps/	Crear aplicación
-GET	/api/v1/apps/{id}	Leer aplicación
-DELETE	/api/v1/apps/{id}	Eliminar aplicación
-Deployments
-Método	Endpoint	Descripción
-GET	/api/v1/{app_id}/deployments	Listar despliegues de una app
-POST	/api/v1/deployments	Crear despliegue
-Metrics
-Método	Endpoint	Descripción
-GET	/api/v1/{app_id}/metrics	Listar métricas de una app
-POST	/api/v1/metrics	Crear métrica
-
 Swagger disponible en: http://localhost:8000/docs
 
 🔹 Estructura del proyecto
