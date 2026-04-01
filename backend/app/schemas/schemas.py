@@ -19,8 +19,10 @@ class UserCreate(UserBase):
 
 class User(UserBase):
     id: int
+
     class Config:
-        from_attributes = True
+        orm_mode = True
+        use_enum_values = True  
 
 class ApplicationBase(BaseModel):
     name: str

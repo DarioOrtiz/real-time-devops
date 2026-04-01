@@ -1,8 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { LayoutDashboard, Server, Activity, Settings, LogOut } from 'lucide-react';
+import { useAuth } from '../../context/AuthContext';
+
 
 export const Sidebar: React.FC = () => {
+  const { logout } = useAuth(); // <-- obtener logout
+
   const menuItems = [
     { icon: LayoutDashboard, label: 'Dashboard', to: '/dashboard', active: true },
     { icon: Server, label: 'Applications', to: '/applications', active: false },
@@ -39,7 +43,10 @@ export const Sidebar: React.FC = () => {
       </nav>
 
       <div className="p-4 border-t border-gray-800">
-        <button className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors">
+        <button
+          onClick={logout} // <-- aquí se llama la función
+          className="w-full flex items-center space-x-3 px-4 py-3 text-sm text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition-colors"
+        >
           <LogOut className="w-5 h-5" />
           <span className="font-medium">Logout</span>
         </button>

@@ -5,7 +5,7 @@ from app.core.config import settings
 engine = create_engine(
     settings.SQLALCHEMY_DATABASE_URI,
     pool_pre_ping=True,
-    echo=True  # <--- Esto muestra en consola lo que hace SQLAlchemy
+    echo=True 
 )
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 

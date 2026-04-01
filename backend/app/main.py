@@ -1,13 +1,13 @@
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from strawberry.fastapi import GraphQLRouter
 
 from app.core.config import settings
-from app.api.routers import apps, deployments, metrics
+from app.api.routers import apps, deployments, metrics, auth
+
 from app.api.graphql import schema
 from app.api.websockets import router as ws_router
-from app.core.config import settings
-
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -27,10 +27,14 @@ app.add_middleware(
 def health_check():
     return {"status": "ok", "app": settings.PROJECT_NAME}
 
-# Routers
+# Routers existentes
 app.include_router(apps.router, prefix=f"{settings.API_V1_STR}/apps", tags=["apps"])
 app.include_router(deployments.router, prefix=f"{settings.API_V1_STR}", tags=["deployments"])
 app.include_router(metrics.router, prefix=f"{settings.API_V1_STR}", tags=["metrics"])
+
+# ✅ Router de autenticación
+
+app.include_router(auth.router, prefix="/api/v1/auth", tags=["auth"])
 
 # WebSockets
 app.include_router(ws_router, tags=["websockets"])
